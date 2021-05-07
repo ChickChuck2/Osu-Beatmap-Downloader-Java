@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="545.0" prefWidth="844.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Controller">
+    <VBox prefHeight="544.0" prefWidth="271.0">
+        <AnchorPane prefHeight="139.0" prefWidth="184.0" />
+        <HBox prefHeight="41.0" prefWidth="184.0">
+            <Button mnemonicParsing="false" text="&lt;&lt;" />
+            <Separator prefHeight="4.0" prefWidth="74.0" />
+            <Button mnemonicParsing="false" text="play" />
+            <Separator prefHeight="4.0" prefWidth="90.0" />
+            <Button mnemonicParsing="false" text="&gt;&gt;" />
+        </HBox>
+        <ScrollPane prefHeight="368.0" prefWidth="184.0">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+        </ScrollPane>
+    </VBox>
+    <VBox layoutX="271.0" prefHeight="527.0" prefWidth="532.0">
+        <AnchorPane prefHeight="69.0" prefWidth="575.0" style="-fx-border-color: gray;">
+            <HBox prefHeight="19.0" prefWidth="573.0">
+                <Label text="Path Osu/Songs" />
+                <TextField fx:id="OsuDirectory" prefHeight="25.0" prefWidth="354.0" />
+                <Button fx:id="ConfirmPath" mnemonicParsing="false" onAction="#CreateConfig" text="SavePath" />
+            <Button mnemonicParsing="false" onAction="#LoadConfig" text="LoadPath" />
+            </HBox>
+         <CheckBox fx:id="CheckAdvancedFilter" layoutY="33.0" mnemonicParsing="false" text="Advanced Filter" />
+        </AnchorPane>
+        <AnchorPane fx:id="advancedSearch" prefHeight="273.0" prefWidth="549.0">
+            <VBox prefHeight="403.0" prefWidth="549.0">
+                <HBox prefHeight="11.0" prefWidth="554.0" />
+                <AnchorPane prefHeight="56.0" prefWidth="552.0" style="-fx-border-color: gray;">
+                    <AnchorPane layoutY="3.0" prefHeight="18.0" prefWidth="549.0">
+                        <CheckBox fx:id="C_Catch" layoutX="102.0" mnemonicParsing="false" text="Catch" />
+                        <CheckBox fx:id="C_STD" layoutX="47.0" mnemonicParsing="false" text="STD" />
+                        <Label text="Modes" />
+                        <CheckBox fx:id="C_Mania" layoutX="160.0" mnemonicParsing="false" text="Mania" />
+                        <CheckBox fx:id="C_Taiko" layoutX="225.0" mnemonicParsing="false" text="Taiko" />
+                    </AnchorPane>
+                    <AnchorPane layoutX="3.0" layoutY="28.0" prefHeight="31.0" prefWidth="549.0">
+                        <CheckBox fx:id="S_Qualified" layoutX="247.0" layoutY="6.0" mnemonicParsing="false" text="Qualified" />
+                        <CheckBox fx:id="S_Aprove" layoutX="105.0" layoutY="6.0" mnemonicParsing="false" text="Aprove" />
+                        <CheckBox fx:id="S_UnRanqued" layoutX="171.0" layoutY="6.0" mnemonicParsing="false" text="UnRanked" />
+                        <CheckBox fx:id="S_Ranked" layoutX="42.0" layoutY="6.0" mnemonicParsing="false" text="Ranked" />
+                        <Label layoutX="-2.0" layoutY="6.0" text="Status" />
+                    </AnchorPane>
+                </AnchorPane>
+                <Separator prefHeight="22.0" prefWidth="549.0" />
+                <HBox prefHeight="15.0" prefWidth="549.0">
+                    <Label text="genre" />
+                    <ComboBox fx:id="genre" prefWidth="150.0" />
+                    <Label text="language" />
+                    <ComboBox fx:id="language" prefHeight="25.0" prefWidth="131.0" />
+                </HBox>
+                <Separator prefHeight="19.0" prefWidth="549.0" />
+                <HBox prefHeight="39.0" prefWidth="549.0">
+                    <Label text="min_ar     " />
+                    <TextField fx:id="T_minAr" prefHeight="25.0" prefWidth="70.0" text="0" />
+                    <Label text="max_ar      " />
+                    <TextField fx:id="T_maxAr" prefHeight="25.0" prefWidth="62.0" text="0" />
+                </HBox>
+                <HBox prefHeight="39.0" prefWidth="549.0">
+                    <Label text="min_od    " />
+                    <TextField fx:id="T_minOD" prefHeight="25.0" prefWidth="68.0" text="0" />
+                    <Label text="max_od     " />
+                    <TextField fx:id="T_maxOD" prefHeight="25.0" prefWidth="62.0" text="0" />
+                </HBox>
+                <HBox prefHeight="39.0" prefWidth="549.0">
+                    <Label text="min_cs     " />
+                    <TextField fx:id="T_minCS" prefHeight="25.0" prefWidth="68.0" text="0" />
+                    <Label text="max_cs      " />
+                    <TextField fx:id="T_maxCS" prefHeight="25.0" prefWidth="60.0" text="0" />
+                </HBox>
+                <HBox prefHeight="39.0" prefWidth="549.0">
+                    <Label text="min_hp    " />
+                    <TextField fx:id="T_minHP" prefHeight="25.0" prefWidth="66.0" text="0" />
+                    <Label text="max_hp     " />
+                    <TextField fx:id="T_maxHP" prefHeight="25.0" prefWidth="66.0" text="0" />
+                </HBox>
+                <HBox prefHeight="39.0" prefWidth="489.0">
+                    <Label text="min_diff   " />
+                    <TextField fx:id="T_minDIFF" prefHeight="25.0" prefWidth="68.0" text="0" />
+                    <Label text="max_diff    " />
+                    <TextField fx:id="T_maxDIFF" prefHeight="25.0" prefWidth="63.0" text="0" />
+                </HBox>
+                <HBox prefHeight="39.0" prefWidth="549.0">
+                    <Label text="min_bpm  " />
+                    <TextField fx:id="T_minBPM" prefHeight="25.0" prefWidth="63.0" text="0" />
+                    <Label text="max_bpm   " />
+                    <TextField fx:id="T_maxBPM" prefHeight="25.0" prefWidth="61.0" text="0" />
+                </HBox>
+                <HBox prefHeight="39.0" prefWidth="549.0">
+                    <Label text="min_length" />
+                    <TextField fx:id="T_minLENGHT" prefHeight="25.0" prefWidth="61.0" text="0" />
+                    <Label text="max_lenght" />
+                    <TextField fx:id="T_maxLENGHT" prefHeight="25.0" prefWidth="60.0" text="0" />
+                </HBox>
+            </VBox>
+        </AnchorPane>
+        <AnchorPane prefHeight="93.0" prefWidth="573.0">
+            <Button fx:id="DownloadButton" layoutX="251.0" layoutY="2.0" mnemonicParsing="false" onAction="#GetBeatmapInfo" text="Download" />
+            <ProgressBar fx:id="DownlaodPbar" layoutX="195.0" layoutY="46.0" prefWidth="200.0" progress="0.0" />
+        </AnchorPane>
+    </VBox>
+</AnchorPane>
