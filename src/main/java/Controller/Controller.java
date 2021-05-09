@@ -20,47 +20,25 @@ public class Controller {
 
     public AnchorPane advancedSearch;
 
-    public Button ConfirmPath;
     public TextField OsuDirectory;
 
-    public Button DownloadButton;
+    public ComboBox<String> genre,language;
 
-    public ComboBox<String> genre;
-    public ComboBox<String> language;
-
-    public TextField T_minAr;
-    public TextField T_maxAr;
-
-    public TextField T_minOD;
-    public TextField T_maxOD;
-
-    public TextField T_minCS;
-    public TextField T_maxCS;
-
-    public TextField T_minHP;
-    public TextField T_maxHP;
-
-    public TextField T_minDIFF;
-    public TextField T_maxDIFF;
-
-    public TextField T_minBPM;
-    public TextField T_maxBPM;
-
-    public TextField T_minLENGHT;
-    public TextField T_maxLENGHT;
+    public TextField T_minAr,T_maxAr;
+    public TextField T_minOD,T_maxOD;
+    public TextField T_minCS,T_maxCS;
+    public TextField T_minHP,T_maxHP;
+    public TextField T_minDIFF,T_maxDIFF;
+    public TextField T_minBPM,T_maxBPM;
+    public TextField T_minLENGHT,T_maxLENGHT;
 
     public ProgressBar DownlaodPbar;
     public CheckBox CheckAdvancedFilter;
 
-    public CheckBox C_STD;
-    public CheckBox C_Catch;
-    public CheckBox C_Mania;
-    public CheckBox C_Taiko;
-
-    public CheckBox S_Qualified;
-    public CheckBox S_Aprove;
-    public CheckBox S_UnRanqued;
-    public CheckBox S_Ranked;
+    //Modes
+    public CheckBox C_STD,C_Catch,C_Mania,C_Taiko;
+    //State
+    public CheckBox S_Qualified,S_Aprove,S_UnRanqued,S_Ranked;
 
     int Ioffset = 0;
 
@@ -145,45 +123,41 @@ public class Controller {
         String minLenghtString = T_minLENGHT.getText();
         String maxLenghtString = T_maxLENGHT.getText();
 
-        int minAr = Integer.parseInt(minARString);
-        int maxAr = Integer.parseInt(maxARString);
+        int minAr = Integer.parseInt(minARString), maxAr = Integer.parseInt(maxARString);
 
-        int minOd = Integer.parseInt(minOdString);
-        int maxOd = Integer.parseInt(maxOdString);
+        int minOd = Integer.parseInt(minOdString), maxOd = Integer.parseInt(maxOdString);
 
-        int minCs = Integer.parseInt(minCsString);
-        int maxCs = Integer.parseInt(maxCsString);
+        int minCs = Integer.parseInt(minCsString), maxCs = Integer.parseInt(maxCsString);
 
-        int minHp = Integer.parseInt(minHpString);
-        int maxHp = Integer.parseInt(maxHpString);
+        int minHp = Integer.parseInt(minHpString), maxHp = Integer.parseInt(maxHpString);
 
-        int minDiff = Integer.parseInt(minDiffString);
-        int maxDiff = Integer.parseInt(maxDiffString);
+        int minDiff = Integer.parseInt(minDiffString), maxDiff = Integer.parseInt(maxDiffString);
 
-        int minBPM = Integer.parseInt(minBPMString);
-        int maxBPM = Integer.parseInt(maxBPMString);
+        int minBPM = Integer.parseInt(minBPMString), maxBPM = Integer.parseInt(maxBPMString);
 
-        int minLenght = Integer.parseInt(minLenghtString);
-        int maxLenght = Integer.parseInt(maxLenghtString);
+        int minLenght = Integer.parseInt(minLenghtString), maxLenght = Integer.parseInt(maxLenghtString);
 
         Thread thread = new Thread(() -> {
             while (!Thread.currentThread().isInterrupted()) {
                 try{
-                    boolean modeSTD = C_STD.isSelected();
-                    boolean modeCatch = C_Catch.isSelected();
-                    boolean modeMania = C_Mania.isSelected();
-                    boolean modeTaiko = C_Taiko.isSelected();
 
-                    boolean Ranked = S_Ranked.isSelected();
-                    boolean Aprove = S_Aprove.isSelected();
-                    boolean UnRanked = S_UnRanqued.isSelected();
-                    boolean Qualified = S_Qualified.isSelected();
+                    //Modes
+                    boolean modeSTD = C_STD.isSelected(),
+                            modeCatch = C_Catch.isSelected(),
+                            modeMania = C_Mania.isSelected(),
+                            modeTaiko = C_Taiko.isSelected();
+
+                    //States
+                    boolean Ranked = S_Ranked.isSelected(),
+                            Aprove = S_Aprove.isSelected(),
+                            UnRanked = S_UnRanqued.isSelected(),
+                            Qualified = S_Qualified.isSelected();
 
                     //Mode
                     String modes = "";
 
                     if (modeSTD) {
-                        modes +="mode=0&"; //0
+                        modes +="mode=0&";
                     }
                     if (modeTaiko) {
                         modes += "mode=1&";
@@ -192,7 +166,7 @@ public class Controller {
                         modes += "mode=2&";
                     }
                     if (modeMania) {
-                        modes += "mode=3&"; //3
+                        modes += "mode=3&";
                     }
                     if (modes.length() == 0) {
                         modes = "";
@@ -489,7 +463,7 @@ public class Controller {
 
             OsuDirectory.setText(GameFolder);
         }catch (Exception exception) {
-            OsuDirectory.setPromptText("Primeiro, Crie um path com a pasta dos sons de Osu");
+            OsuDirectory.setPromptText("'D:/Games/Osu/Songs'");
         }
     }
 }
