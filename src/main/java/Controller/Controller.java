@@ -13,6 +13,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -36,14 +38,30 @@ public class Controller {
     public CheckBox CheckAdvancedFilter;
 
     //Modes
-    public CheckBox C_STD,C_Catch,C_Mania,C_Taiko;
+    public RadioButton C_STD,C_Catch,C_Mania,C_Taiko;
+    ToggleGroup ModesGroup = new ToggleGroup();
     //State
-    public CheckBox S_Qualified,S_Aprove,S_UnRanqued,S_Ranked;
+    public RadioButton S_Qualified,S_Aprove,S_UnRanqued,S_Ranked;
+    ToggleGroup StateGroup = new ToggleGroup();
+
+    List<String> nameBeatmap = new ArrayList<>();
 
     int Ioffset = 0;
 
     @FXML
     public void initialize() {
+        C_STD.setToggleGroup(ModesGroup);
+        C_Catch.setToggleGroup(ModesGroup);
+        C_Mania.setToggleGroup(ModesGroup);
+        C_Taiko.setToggleGroup(ModesGroup);
+
+        S_Qualified.setToggleGroup(StateGroup);
+        S_Aprove.setToggleGroup(StateGroup);
+        S_UnRanqued.setToggleGroup(StateGroup);
+        S_Ranked.setToggleGroup(StateGroup);
+
+
+
         File Config = new File("Config.json");
         try{
             if (Config.exists()) {
@@ -124,17 +142,11 @@ public class Controller {
         String maxLenghtString = T_maxLENGHT.getText();
 
         int minAr = Integer.parseInt(minARString), maxAr = Integer.parseInt(maxARString);
-
         int minOd = Integer.parseInt(minOdString), maxOd = Integer.parseInt(maxOdString);
-
         int minCs = Integer.parseInt(minCsString), maxCs = Integer.parseInt(maxCsString);
-
         int minHp = Integer.parseInt(minHpString), maxHp = Integer.parseInt(maxHpString);
-
         int minDiff = Integer.parseInt(minDiffString), maxDiff = Integer.parseInt(maxDiffString);
-
         int minBPM = Integer.parseInt(minBPMString), maxBPM = Integer.parseInt(maxBPMString);
-
         int minLenght = Integer.parseInt(minLenghtString), maxLenght = Integer.parseInt(maxLenghtString);
 
         Thread thread = new Thread(() -> {
@@ -405,6 +417,7 @@ public class Controller {
                     int ParentSetId = Integer.parseInt(ParentSetIdstr);
 
                     //Action que vai fazer o download
+                    nameBeatmap.add(BeatmapName);
                     Download(BeatmapName, ParentSetId);
 
                 } catch (Exception exception) {
@@ -422,7 +435,6 @@ public class Controller {
             URL url = new URL(String.format("https://api.chimu.moe/v1/download/%s?n=1", ParentSetId));
             URLConnection c = url.openConnection();
             c.setRequestProperty("User-Agent","Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)");
-
             BufferedInputStream in = new BufferedInputStream(c.getInputStream());
             byte[] dataBuffer = new byte[1024];
             int bytesRead;
@@ -439,7 +451,6 @@ public class Controller {
             e.printStackTrace();
             System.out.println("Algo deu errado porra");
         }
-
         DownlaodPbar.setProgress(0);
     }
 
@@ -449,7 +460,6 @@ public class Controller {
 
         LoadConfig();
     }
-
 
     public void LoadConfig() {
         try {
