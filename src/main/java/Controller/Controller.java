@@ -2,6 +2,7 @@ package Controller;
 
 import Config.createConfig;
 import com.google.gson.Gson;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
@@ -39,6 +40,9 @@ public class Controller {
 
     //Modes
     public RadioButton C_STD,C_Catch,C_Mania,C_Taiko;
+
+    public Label LabelBeatmap;
+
     ToggleGroup ModesGroup = new ToggleGroup();
     //State
     public RadioButton S_Qualified,S_Aprove,S_UnRanqued,S_Ranked;
@@ -59,7 +63,6 @@ public class Controller {
         S_Aprove.setToggleGroup(StateGroup);
         S_UnRanqued.setToggleGroup(StateGroup);
         S_Ranked.setToggleGroup(StateGroup);
-
 
 
         File Config = new File("Config.json");
@@ -410,7 +413,7 @@ public class Controller {
                     JSONObject Beatmap = new JSONObject(ArrayChildren.get(RandomChildren).toString());
 
                     //FileName
-                    String BeatmapName = Beatmap.getString("OsuFile").replace(".osu","");
+                    String BeatmapName = Beatmap.getString("OsuFile").replace(".osu","").replace("/", " ");
 
                     //Beatmap ID
                     String ParentSetIdstr = Beatmap.get("ParentSetId").toString();
@@ -446,8 +449,19 @@ public class Controller {
             }
 
             DownlaodPbar.setProgress(100);
+            Platform.runLater(() -> LabelBeatmap.setText(String.format("%s-%s", ParentSetId, BeatmapName)));
 
         } catch (IOException e) {
+            try {
+                File BeatmapCorrompido = new File(String.format("%s%s-%s.osz", OsuDirectory.getText(), ParentSetId, BeatmapName));
+                if(BeatmapCorrompido.delete()) {
+                    System.out.println("Arquivo deletado");
+                } else {
+                    System.out.println("Falha ao deletar Beatmap Corrompido");
+                }
+            } catch (Exception exception) {
+                System.out.println("Não foi possivel encontrar Beatmap para exclusão");
+            }
             e.printStackTrace();
             System.out.println("Algo deu errado porra");
         }
@@ -464,13 +478,10 @@ public class Controller {
     public void LoadConfig() {
         try {
             Gson gson = new Gson();
-
             Reader reader = Files.newBufferedReader(Paths.get("Config.json"));
-
             Map map = gson.fromJson(reader, Map.class);
 
             String GameFolder = map.get("GameFolder").toString();
-
             OsuDirectory.setText(GameFolder);
         }catch (Exception exception) {
             OsuDirectory.setPromptText("'D:/Games/Osu/Songs'");
