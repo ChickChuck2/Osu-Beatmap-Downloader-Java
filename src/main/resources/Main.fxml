@@ -30,7 +30,7 @@
          <CheckBox fx:id="CheckAdvancedFilter" layoutY="33.0" mnemonicParsing="false" text="Advanced Filter" />
         </AnchorPane>
         <AnchorPane fx:id="advancedSearch" prefHeight="273.0" prefWidth="549.0">
-            <VBox prefHeight="403.0" prefWidth="549.0">
+            <VBox prefHeight="369.0" prefWidth="554.0">
                 <HBox prefHeight="11.0" prefWidth="554.0" />
                 <AnchorPane prefHeight="56.0" prefWidth="552.0" style="-fx-border-color: gray;">
                     <AnchorPane layoutY="3.0" prefHeight="18.0" prefWidth="549.0">
@@ -40,7 +40,7 @@
                         <RadioButton fx:id="C_Mania" layoutX="160.0" mnemonicParsing="false" text="Mania" />
                         <RadioButton fx:id="C_Taiko" layoutX="225.0" mnemonicParsing="false" text="Taiko" />
                     </AnchorPane>
-                    <AnchorPane layoutX="3.0" layoutY="28.0" prefHeight="31.0" prefWidth="549.0">
+                    <AnchorPane layoutX="3.0" layoutY="28.0" prefHeight="47.0" prefWidth="549.0">
                         <RadioButton fx:id="S_Qualified" layoutX="247.0" layoutY="6.0" mnemonicParsing="false" text="Qualified" />
                         <RadioButton fx:id="S_Aprove" layoutX="105.0" layoutY="6.0" mnemonicParsing="false" text="Aprove" />
                         <RadioButton fx:id="S_UnRanqued" layoutX="171.0" layoutY="6.0" mnemonicParsing="false" text="UnRanked" />
@@ -48,8 +48,7 @@
                         <Label layoutX="-2.0" layoutY="6.0" text="Status" />
                     </AnchorPane>
                 </AnchorPane>
-                <Separator prefHeight="22.0" prefWidth="549.0" />
-                <HBox prefHeight="15.0" prefWidth="549.0">
+                <HBox prefHeight="39.0" prefWidth="554.0">
                     <Label text="genre" />
                     <ComboBox fx:id="genre" prefWidth="150.0" />
                     <Label text="language" />
@@ -100,10 +99,11 @@
                 </HBox>
             </VBox>
         </AnchorPane>
-        <AnchorPane prefHeight="93.0" prefWidth="573.0">
-            <Button layoutX="251.0" layoutY="2.0" mnemonicParsing="false" onAction="#GetBeatmapInfo" text="Download" />
-            <ProgressBar fx:id="DownlaodPbar" layoutX="195.0" layoutY="46.0" prefWidth="200.0" progress="0.0" />
-         <Label fx:id="LabelBeatmap" layoutX="14.0" layoutY="28.0" prefHeight="17.0" prefWidth="474.0" text="..." />
+        <AnchorPane prefHeight="103.0" prefWidth="575.0">
+            <Button fx:id="ActionDownload" layoutX="252.0" layoutY="2.0" mnemonicParsing="false" onAction="#GetBeatmapInfo" text="Download" />
+         <Label fx:id="LabelBeatmap" layoutX="13.0" layoutY="74.0" prefHeight="17.0" prefWidth="549.0" text="..." />
+         <Button fx:id="B_StopDownload" layoutX="262.0" layoutY="36.0" mnemonicParsing="false" onAction="#stopDownload" text="Stop" />
         </AnchorPane>
     </VBox>
+      <ProgressBar fx:id="DownlaodPbar" layoutX="472.0" layoutY="522.0" prefWidth="200.0" progress="0.0" />
 </AnchorPane>

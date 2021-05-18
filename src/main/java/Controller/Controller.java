@@ -3,6 +3,7 @@ package Controller;
 import Config.createConfig;
 import com.google.gson.Gson;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
@@ -42,6 +43,9 @@ public class Controller {
     public RadioButton C_STD,C_Catch,C_Mania,C_Taiko;
 
     public Label LabelBeatmap;
+    public Button ActionDownload;
+
+    public Button B_StopDownload;
 
     ToggleGroup ModesGroup = new ToggleGroup();
     //State
@@ -52,8 +56,13 @@ public class Controller {
 
     int Ioffset = 0;
 
+    boolean cancel;
+
     @FXML
     public void initialize() {
+
+        B_StopDownload.setDisable(true);
+
         C_STD.setToggleGroup(ModesGroup);
         C_Catch.setToggleGroup(ModesGroup);
         C_Mania.setToggleGroup(ModesGroup);
@@ -123,6 +132,9 @@ public class Controller {
     }
 
     public void GetBeatmapInfo() {
+        cancel = false;
+        B_StopDownload.setDisable(false);
+
         String minARString = T_minAr.getText();
         String maxARString = T_maxAr.getText();
 
@@ -151,6 +163,8 @@ public class Controller {
         int minDiff = Integer.parseInt(minDiffString), maxDiff = Integer.parseInt(maxDiffString);
         int minBPM = Integer.parseInt(minBPMString), maxBPM = Integer.parseInt(maxBPMString);
         int minLenght = Integer.parseInt(minLenghtString), maxLenght = Integer.parseInt(maxLenghtString);
+
+        B_StopDownload.setDisable(false);
 
         Thread thread = new Thread(() -> {
             while (!Thread.currentThread().isInterrupted()) {
@@ -419,6 +433,10 @@ public class Controller {
                     String ParentSetIdstr = Beatmap.get("ParentSetId").toString();
                     int ParentSetId = Integer.parseInt(ParentSetIdstr);
 
+                    if(cancel) {
+                        break;
+                    }
+
                     //Action que vai fazer o download
                     nameBeatmap.add(BeatmapName);
                     Download(BeatmapName, ParentSetId);
@@ -486,5 +504,10 @@ public class Controller {
         }catch (Exception exception) {
             OsuDirectory.setPromptText("'D:/Games/Osu/Songs'");
         }
+    }
+
+    public void stopDownload() {
+        cancel = true;
+        B_StopDownload.setDisable(true);
     }
 }
