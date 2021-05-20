@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.DirectoryChooser;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.*;
@@ -509,5 +510,15 @@ public class Controller {
     public void stopDownload() {
         cancel = true;
         B_StopDownload.setDisable(true);
+    }
+
+    public void LocatePath() {
+
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        File selectedDirectory = directoryChooser.showDialog(null);
+
+        String Directory = selectedDirectory.getAbsolutePath().replace("\\", "/");
+
+        OsuDirectory.setText(Directory+"/");
     }
 }

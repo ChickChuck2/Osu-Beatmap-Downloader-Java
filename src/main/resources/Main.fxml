@@ -23,9 +23,9 @@
         <AnchorPane prefHeight="69.0" prefWidth="575.0" style="-fx-border-color: gray;">
             <HBox prefHeight="19.0" prefWidth="573.0">
                 <Label text="Path Osu/Songs" />
-                <TextField fx:id="OsuDirectory" prefHeight="25.0" prefWidth="354.0" />
+                <TextField fx:id="OsuDirectory" prefHeight="25.0" prefWidth="343.0" />
                 <Button mnemonicParsing="false" onAction="#CreateConfig" text="SavePath" />
-            <Button mnemonicParsing="false" onAction="#LoadConfig" text="LoadPath" />
+            <Button mnemonicParsing="false" onAction="#LocatePath" text="Locate Path" />
             </HBox>
          <CheckBox fx:id="CheckAdvancedFilter" layoutY="33.0" mnemonicParsing="false" text="Advanced Filter" />
         </AnchorPane>
