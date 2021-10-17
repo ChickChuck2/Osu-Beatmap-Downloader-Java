@@ -3,13 +3,13 @@ package Controller;
 import Config.createConfig;
 import com.google.gson.Gson;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.DirectoryChooser;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -49,8 +49,10 @@ public class Controller {
     public Button B_StopDownload;
 
     ToggleGroup ModesGroup = new ToggleGroup();
+
     //State
-    public RadioButton S_Qualified,S_Aprove,S_UnRanqued,S_Ranked;
+    public RadioButton S_Qualified,S_Aprove,S_UnRanqued,S_Ranked, S_Loved;
+
     ToggleGroup StateGroup = new ToggleGroup();
 
     List<String> nameBeatmap = new ArrayList<>();
@@ -181,7 +183,8 @@ public class Controller {
                     boolean Ranked = S_Ranked.isSelected(),
                             Aprove = S_Aprove.isSelected(),
                             UnRanked = S_UnRanqued.isSelected(),
-                            Qualified = S_Qualified.isSelected();
+                            Qualified = S_Qualified.isSelected(),
+                            Loved = S_Loved.isSelected();
 
                     //Mode
                     String modes = "";
@@ -218,6 +221,9 @@ public class Controller {
                     }
                     if (Qualified) {
                         status += "status=3&";
+                    }
+                    if(Loved) {
+                        status += "status=4&";
                     }
                     if (status.length() == 0) {
                         status = "";

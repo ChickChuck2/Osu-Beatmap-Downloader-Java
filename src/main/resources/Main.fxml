@@ -46,6 +46,7 @@
                         <RadioButton fx:id="S_UnRanqued" layoutX="171.0" layoutY="6.0" mnemonicParsing="false" text="UnRanked" />
                         <RadioButton fx:id="S_Ranked" layoutX="42.0" layoutY="6.0" mnemonicParsing="false" text="Ranked" />
                         <Label layoutX="-2.0" layoutY="6.0" text="Status" />
+                  <RadioButton fx:id="S_Loved" layoutX="316.0" layoutY="6.0" mnemonicParsing="false" text="Loved" />
                     </AnchorPane>
                 </AnchorPane>
                 <HBox prefHeight="39.0" prefWidth="554.0">
